@@ -1,4 +1,30 @@
 
+isTracking = false;
+geolocateControl = function(opt_options) {
+    var options = opt_options || {};
+    var button = document.createElement('button');
+    button.className += ' fa fa-map-marker';
+    var handleGeolocate = function() {
+        if (isTracking) {
+            map.removeLayer(geolocateOverlay);
+            isTracking = false;
+      } else if (geolocation.getTracking()) {
+            map.addLayer(geolocateOverlay);
+            map.getView().setCenter(geolocation.getPosition());
+            isTracking = true;
+      }
+    };
+    button.addEventListener('click', handleGeolocate, false);
+    button.addEventListener('touchstart', handleGeolocate, false);
+    var element = document.createElement('div');
+    element.className = 'geolocate ol-unselectable ol-control';
+    element.appendChild(button);
+    ol.control.Control.call(this, {
+        element: element,
+        target: options.target
+    });
+};
+ol.inherits(geolocateControl, ol.control.Control);
 
 var container = document.getElementById('popup');
 var content = document.getElementById('popup-content');
@@ -20,7 +46,7 @@ var expandedAttribution = new ol.control.Attribution({
 
 var map = new ol.Map({
     controls: ol.control.defaults({attribution:false}).extend([
-        expandedAttribution
+        expandedAttribution,new geolocateControl()
     ]),
     target: document.getElementById('map'),
     renderer: 'canvas',
@@ -32,7 +58,7 @@ var map = new ol.Map({
 });
 
 
-map.getView().fit([-5240756.956341, -2757153.584294, -5125875.672411, -2670686.128687], map.getSize());
+map.getView().fit([-5267520.784470, -2754122.985296, -5152534.600058, -2667491.494603], map.getSize());
 
 var NO_POPUP = 0
 var ALL_FIELDS = 1
@@ -346,6 +372,55 @@ map.on('singleclick', function(evt) {
 
 
 
+      var geolocation = new ol.Geolocation({
+  projection: map.getView().getProjection()
+});
+
+
+var accuracyFeature = new ol.Feature();
+geolocation.on('change:accuracyGeometry', function() {
+  accuracyFeature.setGeometry(geolocation.getAccuracyGeometry());
+});
+
+var positionFeature = new ol.Feature();
+positionFeature.setStyle(new ol.style.Style({
+  image: new ol.style.Circle({
+    radius: 6,
+    fill: new ol.style.Fill({
+      color: '#3399CC'
+    }),
+    stroke: new ol.style.Stroke({
+      color: '#fff',
+      width: 2
+    })
+  })
+}));
+
+geolocation.on('change:position', function() {
+  var coordinates = geolocation.getPosition();
+  positionFeature.setGeometry(coordinates ?
+      new ol.geom.Point(coordinates) : null);
+});
+
+var geolocateOverlay = new ol.layer.Vector({
+  source: new ol.source.Vector({
+    features: [accuracyFeature, positionFeature]
+  })
+});
+
+geolocation.setTracking(true);
+
+
+var geocoder = new Geocoder('nominatim', {
+  provider: 'osm',
+  lang: 'en-US',
+  placeholder: 'Search for ...',
+  limit: 5,
+  keepOpen: true
+});
+map.addControl(geocoder);
+
+document.getElementsByClassName('gcd-gl-btn')[0].className += ' fa fa-search';
 
 var attributionComplete = false;
 map.on("rendercomplete", function(evt) {

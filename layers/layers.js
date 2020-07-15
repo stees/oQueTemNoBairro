@@ -43,11 +43,11 @@ var lyr_0SPRMSPbaseRMSP_2 = new ol.layer.Vector({
 
 lyr_OpenStreetMap_0.setVisible(true);lyr_0SPRMSPbaseSubprefeituras_1.setVisible(true);lyr_0SPRMSPbaseRMSP_2.setVisible(true);
 var layersList = [lyr_OpenStreetMap_0,lyr_0SPRMSPbaseSubprefeituras_1,lyr_0SPRMSPbaseRMSP_2];
-lyr_0SPRMSPbaseSubprefeituras_1.set('fieldAliases', {'fid': 'fid', 'sp_codigo': 'sp_codigo', 'sp_nome': 'sp_nome', });
+lyr_0SPRMSPbaseSubprefeituras_1.set('fieldAliases', {'fid': 'fid', 'sp_codigo': 'sp_codigo', 'Subprefeitura': 'Subprefeitura', 'Projeto de Lei Orçamentária Anual - 2021 - votação popular': 'Projeto de Lei Orçamentária Anual - 2021 - votação popular', });
 lyr_0SPRMSPbaseRMSP_2.set('fieldAliases', {'fid': 'fid', 'Nome': 'Nome', 'Lei': 'Lei', });
-lyr_0SPRMSPbaseSubprefeituras_1.set('fieldImages', {'fid': 'TextEdit', 'sp_codigo': 'TextEdit', 'sp_nome': 'TextEdit', });
+lyr_0SPRMSPbaseSubprefeituras_1.set('fieldImages', {'fid': 'Hidden', 'sp_codigo': 'Hidden', 'Subprefeitura': '', 'Projeto de Lei Orçamentária Anual - 2021 - votação popular': '', });
 lyr_0SPRMSPbaseRMSP_2.set('fieldImages', {'fid': 'TextEdit', 'Nome': 'TextEdit', 'Lei': 'TextEdit', });
-lyr_0SPRMSPbaseSubprefeituras_1.set('fieldLabels', {'fid': 'no label', 'sp_codigo': 'no label', 'sp_nome': 'inline label', });
+lyr_0SPRMSPbaseSubprefeituras_1.set('fieldLabels', {'Subprefeitura': 'no label', 'Projeto de Lei Orçamentária Anual - 2021 - votação popular': 'no label', });
 lyr_0SPRMSPbaseRMSP_2.set('fieldLabels', {'fid': 'no label', 'Nome': 'no label', 'Lei': 'no label', });
 lyr_0SPRMSPbaseRMSP_2.on('precompose', function(evt) {
     evt.context.globalCompositeOperation = 'normal';
