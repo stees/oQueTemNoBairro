@@ -31,3 +31,12 @@ u{
     color: black;
     font-weight: 500;
 }
+
+
+@media only screen and (max-width:900px){
+    #all{
+        width: 500px;
+        margin: auto;
+    }
+
+}
