@@ -54,12 +54,12 @@ b{
 
 @media only screen and (max-width:900px){
     #all{
-        width: 300px;
+        width: 350px;
         margin: auto;
     }
 
     #map {
-        width: 300px;
+        width: 350px;
         height: 400px;
     }
 
