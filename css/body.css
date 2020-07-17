@@ -3,6 +3,11 @@
     margin: auto;
 }
 
+#map {
+    width: 900px;
+    height: 700px;
+}
+
 body{
     background-color: rgb(245, 245, 245);
 }
@@ -37,6 +42,11 @@ u{
     #all{
         width: 400px;
         margin: auto;
+    }
+
+    #map {
+        width: 400px;
+        height: 700px;
     }
 
 }
