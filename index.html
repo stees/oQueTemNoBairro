@@ -12,175 +12,196 @@
         <link rel="stylesheet" href="css/body.css">
         <style>
         #map {
-            width: 903px;
-            height: 711px;
+            width: 900px;
+            height: 700px;
         }
         </style>
         <title></title>
     </head>
     <body>
-        <h1>O que tem no meu bairro?</h1>
-        <p>Este site simples serve para você saber o que tem de iniciativas populares ocorrendo na sua região.</p>
-        <p>Busque pelo seu endereço na lupa, veja em qual subprefeitura você mora e clique nela para ver o nome e o que tem lá.</p>
+        <div id="all">
+            <div id="header_text">
+                <h1>O que tem no meu bairro?</h1>
+                <p>Este site simples serve para você saber o que tem de iniciativas populares ocorrendo na sua região.</p>
+                <p>Busque pelo seu endereço na <u>lupa</u>, aperte enter, selecione seu endereço, e veja em <u>qual subprefeitura você mora</u> clicando na área que contém o pino azul do seu endereço.</p>
 
-        <div id="map">
-        </div>
-        <script src="js/qgis2web_expressions.js"></script>
-        <script src="js/leaflet.js"></script>
-        <script src="js/leaflet.rotatedMarker.js"></script>
-        <script src="js/leaflet.pattern.js"></script>
-        <script src="js/leaflet-hash.js"></script>
-        <script src="js/Autolinker.min.js"></script>
-        <script src="js/rbush.min.js"></script>
-        <script src="js/labelgun.min.js"></script>
-        <script src="js/labels.js"></script>
-        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
-        <script src="data/0SPRMSPbaseSubprefeituras_1.js"></script>
-        <script src="data/0SPRMSPbaseRMSP_2.js"></script>
-        <script>
-        var highlightLayer;
-        function highlightFeature(e) {
-            highlightLayer = e.target;
+                <h2>Projeto de Lei Orçamentária Anual - 2021 - votação popular</h2>
+                <p>
+                    A Prefeitura de São Paulo está recebendo votações em propostas de melhorias para os bairros. 
+                    <u>As 5 propostas mais bem-votadas</u> de cada subprefeitura serão avaliadas e <u>podem entrar no orçamento de 2021</u>.
+                </p>
+                
+                <p> Para votar, siga os seguintes passos: </p>
+                <ul>
+                    <li><a href="http://participemais.prefeitura.sp.gov.br/users/sign_up">Clique aqui</a> para se cadastrar no site, preenchendo seus dados.</li>
+                    <li><a href="http://participemais.prefeitura.sp.gov.br/account">Confira</a> se seu cadastro está completo.</li>
+                    <li>Siga as <u>instruções do início da página para descobrir sua subprefeitura</u> e siga o link que aparecer no balão.</li>
+                </ul>
 
-            if (e.target.feature.geometry.type === 'LineString') {
-              highlightLayer.setStyle({
-                color: '#ffff00',
-              });
-            } else {
-              highlightLayer.setStyle({
-                fillColor: '#ffff00',
-                fillOpacity: 0.35
-              });
+                <p>Quando você encontrar sua subprefeitura, basta clicar em cima dela, conferir o nome, e seguir o link!</p>
+                <p>O site da prefeitura vai pedir para fazer um cadastro. Basta preencher os dados </p>
+            </div>
+
+
+            <div id="map">
+            </div>
+            <script src="js/qgis2web_expressions.js"></script>
+            <script src="js/leaflet.js"></script>
+            <script src="js/leaflet.rotatedMarker.js"></script>
+            <script src="js/leaflet.pattern.js"></script>
+            <script src="js/leaflet-hash.js"></script>
+            <script src="js/Autolinker.min.js"></script>
+            <script src="js/rbush.min.js"></script>
+            <script src="js/labelgun.min.js"></script>
+            <script src="js/labels.js"></script>
+            <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+            <script src="data/0SPRMSPbaseSubprefeituras_1.js"></script>
+            <script src="data/0SPRMSPbaseRMSP_2.js"></script>
+            <script>
+            var highlightLayer;
+            function highlightFeature(e) {
+                highlightLayer = e.target;
+
+                if (e.target.feature.geometry.type === 'LineString') {
+                highlightLayer.setStyle({
+                    color: '#ffff00',
+                });
+                } else {
+                highlightLayer.setStyle({
+                    fillColor: '#ffff00',
+                    fillOpacity: 0.35
+                });
+                }
             }
-        }
-        var map = L.map('map', {
-            zoomControl:true, maxZoom:13, minZoom:9
-        }).fitBounds([[-23.876668064290016,-46.889130753478625],[-23.5210052867111,-46.400996803073106]]).setMaxBounds([[-23.976668064290016,-46.989130753478625],[-23.4210052867111,-46.200996803073106]]);
-        var hash = new L.Hash(map);
-        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
-        var bounds_group = new L.featureGroup([]);
-        function setBounds() {
-        }
-        var layer_OpenStreetMap_0 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            opacity: 1.0,
-            attribution: '',
-            minZoom: 9,
-            maxZoom: 13,
-            minNativeZoom: 0,
-            maxNativeZoom: 19
-        });
-        layer_OpenStreetMap_0;
-        map.addLayer(layer_OpenStreetMap_0);
-        function pop_0SPRMSPbaseSubprefeituras_1(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
+            var map = L.map('map', {
+                zoomControl:true, maxZoom:13, minZoom:9
+            }).fitBounds([[-23.876668064290016,-46.889130753478625],[-23.5210052867111,-46.400996803073106]]).setMaxBounds([[-23.976668064290016,-46.989130753478625],[-23.4210052867111,-46.200996803073106]]);
+            var hash = new L.Hash(map);
+            map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+            var bounds_group = new L.featureGroup([]);
+            function setBounds() {
+            }
+            var layer_OpenStreetMap_0 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                opacity: 1.0,
+                attribution: '',
+                minZoom: 9,
+                maxZoom: 13,
+                minNativeZoom: 0,
+                maxNativeZoom: 19
             });
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2"><strong>Subprefeitura</strong><br />' + (feature.properties['Subprefeitura'] !== null ? Autolinker.link(feature.properties['Subprefeitura'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Projeto de Lei Orçamentária Anual - 2021 - votação popular</strong><br />' + (feature.properties['LOA2021'] !== null ? Autolinker.link(feature.properties['LOA2021'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
+            layer_OpenStreetMap_0;
+            map.addLayer(layer_OpenStreetMap_0);
+            function pop_0SPRMSPbaseSubprefeituras_1(feature, layer) {
+                layer.on({
+                    mouseout: function(e) {
+                        for (i in e.target._eventParents) {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    },
+                    mouseover: highlightFeature,
+                });
+                var popupContent = '<table>\
+                        <tr>\
+                            <td colspan="2"><strong>Subprefeitura</strong><br />' + (feature.properties['Subprefeitura'] !== null ? Autolinker.link(feature.properties['Subprefeitura'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <td colspan="2"><strong>Projeto de Lei Orçamentária Anual - 2021 - votação popular</strong><br />' + (feature.properties['LOA2021'] !== null ? Autolinker.link(feature.properties['LOA2021'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        </tr>\
+                    </table>';
+                layer.bindPopup(popupContent, {maxHeight: 400});
+            }
 
-        function style_0SPRMSPbaseSubprefeituras_1_0() {
-            return {
-                pane: 'pane_0SPRMSPbaseSubprefeituras_1',
-                opacity: 1,
-                color: 'rgba(35,35,35,0.5)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(192,192,192,0.5)',
+            function style_0SPRMSPbaseSubprefeituras_1_0() {
+                return {
+                    pane: 'pane_0SPRMSPbaseSubprefeituras_1',
+                    opacity: 1,
+                    color: 'rgba(35,35,35,0.5)',
+                    dashArray: '',
+                    lineCap: 'butt',
+                    lineJoin: 'miter',
+                    weight: 1.0, 
+                    fill: true,
+                    fillOpacity: 1,
+                    fillColor: 'rgba(192,192,192,0.5)',
+                    interactive: true,
+                }
+            }
+            map.createPane('pane_0SPRMSPbaseSubprefeituras_1');
+            map.getPane('pane_0SPRMSPbaseSubprefeituras_1').style.zIndex = 401;
+            map.getPane('pane_0SPRMSPbaseSubprefeituras_1').style['mix-blend-mode'] = 'normal';
+            var layer_0SPRMSPbaseSubprefeituras_1 = new L.geoJson(json_0SPRMSPbaseSubprefeituras_1, {
+                attribution: '',
                 interactive: true,
-            }
-        }
-        map.createPane('pane_0SPRMSPbaseSubprefeituras_1');
-        map.getPane('pane_0SPRMSPbaseSubprefeituras_1').style.zIndex = 401;
-        map.getPane('pane_0SPRMSPbaseSubprefeituras_1').style['mix-blend-mode'] = 'normal';
-        var layer_0SPRMSPbaseSubprefeituras_1 = new L.geoJson(json_0SPRMSPbaseSubprefeituras_1, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_0SPRMSPbaseSubprefeituras_1',
-            layerName: 'layer_0SPRMSPbaseSubprefeituras_1',
-            pane: 'pane_0SPRMSPbaseSubprefeituras_1',
-            onEachFeature: pop_0SPRMSPbaseSubprefeituras_1,
-            style: style_0SPRMSPbaseSubprefeituras_1_0,
-        });
-        bounds_group.addLayer(layer_0SPRMSPbaseSubprefeituras_1);
-        map.addLayer(layer_0SPRMSPbaseSubprefeituras_1);
-        function pop_0SPRMSPbaseRMSP_2(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (i in e.target._eventParents) {
-                        e.target._eventParents[i].resetStyle(e.target);
-                    }
-                },
-                mouseover: highlightFeature,
+                dataVar: 'json_0SPRMSPbaseSubprefeituras_1',
+                layerName: 'layer_0SPRMSPbaseSubprefeituras_1',
+                pane: 'pane_0SPRMSPbaseSubprefeituras_1',
+                onEachFeature: pop_0SPRMSPbaseSubprefeituras_1,
+                style: style_0SPRMSPbaseSubprefeituras_1_0,
             });
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? Autolinker.link(feature.properties['fid'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Nome'] !== null ? Autolinker.link(feature.properties['Nome'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Lei'] !== null ? Autolinker.link(feature.properties['Lei'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_0SPRMSPbaseRMSP_2_0() {
-            return {
-                pane: 'pane_0SPRMSPbaseRMSP_2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fillOpacity: 0,
-                interactive: false,
+            bounds_group.addLayer(layer_0SPRMSPbaseSubprefeituras_1);
+            map.addLayer(layer_0SPRMSPbaseSubprefeituras_1);
+            function pop_0SPRMSPbaseRMSP_2(feature, layer) {
+                layer.on({
+                    mouseout: function(e) {
+                        for (i in e.target._eventParents) {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    },
+                    mouseover: highlightFeature,
+                });
+                var popupContent = '<table>\
+                        <tr>\
+                            <td colspan="2">' + (feature.properties['fid'] !== null ? Autolinker.link(feature.properties['fid'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <td colspan="2">' + (feature.properties['Nome'] !== null ? Autolinker.link(feature.properties['Nome'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <td colspan="2">' + (feature.properties['Lei'] !== null ? Autolinker.link(feature.properties['Lei'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        </tr>\
+                    </table>';
+                layer.bindPopup(popupContent, {maxHeight: 400});
             }
-        }
-        map.createPane('pane_0SPRMSPbaseRMSP_2');
-        map.getPane('pane_0SPRMSPbaseRMSP_2').style.zIndex = 402;
-        map.getPane('pane_0SPRMSPbaseRMSP_2').style['mix-blend-mode'] = 'normal';
-        var layer_0SPRMSPbaseRMSP_2 = new L.geoJson(json_0SPRMSPbaseRMSP_2, {
-            attribution: '',
-            interactive: false,
-            dataVar: 'json_0SPRMSPbaseRMSP_2',
-            layerName: 'layer_0SPRMSPbaseRMSP_2',
-            pane: 'pane_0SPRMSPbaseRMSP_2',
-            onEachFeature: pop_0SPRMSPbaseRMSP_2,
-            style: style_0SPRMSPbaseRMSP_2_0,
-        });
-        bounds_group.addLayer(layer_0SPRMSPbaseRMSP_2);
-        map.addLayer(layer_0SPRMSPbaseRMSP_2);
-        var osmGeocoder = new L.Control.Geocoder({
-            collapsed: true,
-            position: 'topleft',
-            text: 'Search',
-            title: 'Testing'
-        }).addTo(map);
-        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .className += ' fa fa-search';
-        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .title += 'Search for a place';
-        setBounds();
-        </script>
+
+            function style_0SPRMSPbaseRMSP_2_0() {
+                return {
+                    pane: 'pane_0SPRMSPbaseRMSP_2',
+                    opacity: 1,
+                    color: 'rgba(35,35,35,1.0)',
+                    dashArray: '',
+                    lineCap: 'butt',
+                    lineJoin: 'miter',
+                    weight: 1.0, 
+                    fillOpacity: 0,
+                    interactive: false,
+                }
+            }
+            map.createPane('pane_0SPRMSPbaseRMSP_2');
+            map.getPane('pane_0SPRMSPbaseRMSP_2').style.zIndex = 402;
+            map.getPane('pane_0SPRMSPbaseRMSP_2').style['mix-blend-mode'] = 'normal';
+            var layer_0SPRMSPbaseRMSP_2 = new L.geoJson(json_0SPRMSPbaseRMSP_2, {
+                attribution: '',
+                interactive: false,
+                dataVar: 'json_0SPRMSPbaseRMSP_2',
+                layerName: 'layer_0SPRMSPbaseRMSP_2',
+                pane: 'pane_0SPRMSPbaseRMSP_2',
+                onEachFeature: pop_0SPRMSPbaseRMSP_2,
+                style: style_0SPRMSPbaseRMSP_2_0,
+            });
+            bounds_group.addLayer(layer_0SPRMSPbaseRMSP_2);
+            map.addLayer(layer_0SPRMSPbaseRMSP_2);
+            var osmGeocoder = new L.Control.Geocoder({
+                collapsed: true,
+                position: 'topleft',
+                text: 'Search',
+                title: 'Testing'
+            }).addTo(map);
+            document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+            .className += ' fa fa-search';
+            document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+            .title += 'Search for a place';
+            setBounds();
+            </script>
+        </div>
     </body>
 </html>
