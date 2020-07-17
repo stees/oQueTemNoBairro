@@ -897,11 +897,16 @@ module.exports = {
 var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null),
 	Util = _dereq_('../util');
 
+
+	
 module.exports = {
 	"class": L.Class.extend({
 		options: {
 			serviceUrl: 'https://nominatim.openstreetmap.org/',
-			geocodingQueryParams: {},
+			geocodingQueryParams: {
+				bounded: 1,
+        		viewbox: "-46.887721,-23.229246,-46.486956,-23.975438"
+			},
 			reverseQueryParams: {},
 			htmlTemplate: function(r) {
 				var a = r.address,
