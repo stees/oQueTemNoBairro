@@ -33,9 +33,9 @@ p,li{
     font-weight: 300;
 }
 
-u{
-    color: black;
-    font-weight: 500;
+b{
+    color: rgb(50, 50, 50);
+    font-weight: 600;
 }
 
 
@@ -48,6 +48,19 @@ u{
     #map {
         width: 400px;
         height: 500px;
+    }
+
+}
+
+@media only screen and (max-width:900px){
+    #all{
+        width: 300px;
+        margin: auto;
+    }
+
+    #map {
+        width: 300px;
+        height: 400px;
     }
 
 }
