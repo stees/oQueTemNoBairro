@@ -98,13 +98,13 @@
                 });
                 var popupContent = '<table>\
                         <tr>\
-                            <td colspan="2"><strong>Subprefeitura</strong><br />' + (feature.properties['Subprefeitura'] !== null ? Autolinker.link(feature.properties['Subprefeitura'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                            <td colspan="1"><strong>Subprefeitura</strong><br />' + (feature.properties['Subprefeitura'] !== null ? Autolinker.link(feature.properties['Subprefeitura'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <td colspan="1"><strong>Instagram</strong><br />' + (feature.properties['Instagram'] !== null ? Autolinker.link(feature.properties['Instagram'].toLocaleString(), {truncate: {length: 60, location: 'smart'}}) : '') + '</td>\
                         </tr>\
                         <tr>\
                             <td colspan="2"><strong>Projeto de Lei Orçamentária Anual - 2021 - votação popular</strong><br />' + (feature.properties['LOA2021'] !== null ? Autolinker.link(feature.properties['LOA2021'].toLocaleString(), {truncate: {length: 60, location: 'smart'}}) : '') + '</td>\
-                        </tr>\
-                        <tr>\
-                            <td colspan="2"><strong>Instagram</strong><br />' + (feature.properties['Instagram'] !== null ? Autolinker.link(feature.properties['Instagram'].toLocaleString(), {truncate: {length: 60, location: 'smart'}}) : '') + '</td>\
                         </tr>\
                     </table>';
                 layer.bindPopup(popupContent, {maxHeight: 400});
