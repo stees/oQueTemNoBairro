@@ -27,7 +27,7 @@ h2{
     font-size: large;
 }
 
-p,li{
+a,p,li{
     font-family: Calibri;
     color: rgb(70, 70, 70);
     font-weight: 300;
@@ -36,6 +36,20 @@ p,li{
 b{
     color: rgb(50, 50, 50);
     font-weight: 600;
+}
+
+a.buttonGitHub{
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    
+    text-align: center;
+    vertical-align: middle;
+    padding: 7px;
+    position: relative;
+    top: 20px;
+    text-decoration: none;
+    color: initial;
 }
 
 

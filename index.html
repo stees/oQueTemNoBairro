@@ -14,6 +14,8 @@
     </head>
     <body>
         <div id="all">
+            <a href="https://github.com/stees/oQueTemNoBairro/" class="buttonGitHub">Repositório no GitHub</a>
+
             <div id="header_text">
                 <h1>O que tem no meu bairro?</h1>
                 <p>Este site simples serve para você saber o que tem de iniciativas populares ocorrendo na sua região.</p>
@@ -99,7 +101,10 @@
                             <td colspan="2"><strong>Subprefeitura</strong><br />' + (feature.properties['Subprefeitura'] !== null ? Autolinker.link(feature.properties['Subprefeitura'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                         </tr>\
                         <tr>\
-                            <td colspan="2"><strong>Projeto de Lei Orçamentária Anual - 2021 - votação popular</strong><br />' + (feature.properties['LOA2021'] !== null ? Autolinker.link(feature.properties['LOA2021'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                            <td colspan="2"><strong>Projeto de Lei Orçamentária Anual - 2021 - votação popular</strong><br />' + (feature.properties['LOA2021'] !== null ? Autolinker.link(feature.properties['LOA2021'].toLocaleString(), {truncate: {length: 60, location: 'smart'}}) : '') + '</td>\
+                        </tr>\
+                        <tr>\
+                            <td colspan="2"><strong>Instagram</strong><br />' + (feature.properties['Instagram'] !== null ? Autolinker.link(feature.properties['Instagram'].toLocaleString(), {truncate: {length: 60, location: 'smart'}}) : '') + '</td>\
                         </tr>\
                     </table>';
                 layer.bindPopup(popupContent, {maxHeight: 400});
