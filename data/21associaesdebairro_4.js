@@ -1,0 +1,1 @@
+var json_21associaesdebairro_4 = {"type":"FeatureCollection","name":"21associaesdebairro_4","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"fid":"1","Nome":"Mãos Unidas","Endereço":"Viela Paraná","Site":null},"geometry":{"type":"Point","coordinates":[-46.6425194064607,-23.590628641094948]}}]}
