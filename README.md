@@ -3,7 +3,7 @@
 https://stees.github.io/oQueTemNoBairro/
 
 ## O que é?
- - Um mapa de iniciativas locais na Região Metropolitana de São Paulo
+ - Um mapeamento quantitativo de iniciativas locais na Região Metropolitana de São Paulo
 
 ## Por que foi feito?
  - Para facilitar a conexão entre as pessoas e as iniciativas populares de seus bairros, abrindo caminho para uma maior participação e politização
